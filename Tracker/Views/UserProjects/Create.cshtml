@@ -1,24 +1,24 @@
 ﻿@model Tracker.Models.UserProject
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Assign Project";
 }
 
-<h1>Create</h1>
+<h1>Assign</h1>
 
-<h4>UserProject</h4>
+<h4>Use the menu to assign a project to specific user</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="TrackerUserId" class="control-label"></label>
-                <select asp-for="TrackerUserId" class ="form-control" asp-items="ViewBag.TrackerUserId"></select>
+                <label asp-for="User" class="control-label"></label>
+                <select asp-for="TrackerUserId" class="form-control" asp-items="ViewBag.User"></select>
             </div>
             <div class="form-group">
-                <label asp-for="ProjectId" class="control-label"></label>
-                <select asp-for="ProjectId" class ="form-control" asp-items="ViewBag.ProjectId"></select>
+                <label asp-for="Project" class="control-label"></label>
+                <select asp-for="ProjectId" class="form-control" asp-items="ViewBag.Project"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

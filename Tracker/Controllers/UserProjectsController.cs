@@ -49,8 +49,8 @@ namespace Tracker.Controllers
         // GET: UserProjects/Create
         public IActionResult Create()
         {
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Title");
-            ViewData["TrackerUserId"] = new SelectList(_context.Set<TrackerUser>(), "Id", "Id");
+            ViewData["Project"] = new SelectList(_context.Projects, "Id", "Title");
+            ViewData["User"] = new SelectList(_context.Set<TrackerUser>(), "Id", "Email");
             return View();
         }
 
@@ -86,7 +86,7 @@ namespace Tracker.Controllers
                 return NotFound();
             }
             ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Title", userProject.ProjectId);
-            ViewData["TrackerUserId"] = new SelectList(_context.Set<TrackerUser>(), "Id", "Id", userProject.TrackerUserId);
+            ViewData["TrackerUserId"] = new SelectList(_context.Set<TrackerUser>(), "Id", "Email", userProject.TrackerUserId);
             return View(userProject);
         }
 
@@ -123,7 +123,7 @@ namespace Tracker.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Title", userProject.ProjectId);
-            ViewData["TrackerUserId"] = new SelectList(_context.Set<TrackerUser>(), "Id", "Id", userProject.TrackerUserId);
+            ViewData["TrackerUserId"] = new SelectList(_context.Set<TrackerUser>(), "Id", "Email", userProject.TrackerUserId);
             return View(userProject);
         }
 

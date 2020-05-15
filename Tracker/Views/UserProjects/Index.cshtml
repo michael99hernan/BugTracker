@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Tracker.Models.UserProject>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Assignments";
 }
 
-<h1>Index</h1>
+<h1>Users assigned to project list</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Add user to project</a>
 </p>
 <table class="table">
     <thead>
@@ -25,7 +25,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
+                @Html.DisplayFor(modelItem => item.User.Email)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Project.Title)
