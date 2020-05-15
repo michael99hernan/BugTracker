@@ -14,7 +14,7 @@
     <div class="form-group row">
         <label asp-for="RoleName" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
-            <input asp-for="RoleName" >
+            <input asp-for="RoleName" class="form-control" >
             <span asp-validation-for="RoleName" class="text-danger"></span>
         </div>
     </div>
@@ -45,14 +45,11 @@
 
         </div>
         <div class="card-footer">
-            <a class="btn btn-primary" style="width:auto"
-               asp-controller="admin" asp-action="editrole">
-                Add Users
+            <a class="btn btn-primary" style="width:auto
+               asp-controller="admin" asp-action="EditUsersInRole" asp-route-roleId="@Model.Id">
+                Add/Remove Users
             </a>
-            <a class="btn btn-primary" style="width:auto"
-               asp-controller="admin" asp-action="editrole">
-                Remove Users
-            </a>
+
         </div>
     </div>
 </form>
