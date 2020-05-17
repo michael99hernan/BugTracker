@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tracker.Data;
 
 namespace Tracker.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200517071220_StatusUpdate")]
+    partial class StatusUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -280,13 +282,10 @@ namespace Tracker.Data.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
-                    b.Property<int>("StatusUpdatesId")
+                    b.Property<int?>("StatusId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -299,7 +298,7 @@ namespace Tracker.Data.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.HasIndex("StatusUpdatesId");
+                    b.HasIndex("StatusId");
 
                     b.HasIndex("TrackerUserId");
 
@@ -403,9 +402,7 @@ namespace Tracker.Data.Migrations
 
                     b.HasOne("Tracker.Models.StatusUpdates", "Status")
                         .WithMany()
-                        .HasForeignKey("StatusUpdatesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("StatusId");
 
                     b.HasOne("Tracker.Models.TrackerUser", "UserCreated")
                         .WithMany()

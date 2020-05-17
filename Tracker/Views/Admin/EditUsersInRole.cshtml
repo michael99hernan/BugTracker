@@ -7,6 +7,7 @@
     <form method="post">
         <div class="card-header">
             <h2>Add or remove users from this role</h2>
+            <h3 asp-action="CreateRole" asp-controller="Admin">Create Role</h3>
         </div>
         <div class="card-body">
             @for (int i = 0; i < Model.Count; i++)

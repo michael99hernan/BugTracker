@@ -13,7 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Tracker.Models;
-
+//using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 namespace Tracker
 {
     public class Startup
@@ -34,6 +34,8 @@ namespace Tracker
             services.AddDefaultIdentity<TrackerUser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+               // .AddRazerRuntimeCompilation();
+
             services.AddRazorPages();
 
             
