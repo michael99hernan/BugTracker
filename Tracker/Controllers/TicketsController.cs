@@ -95,8 +95,8 @@ namespace Tracker.Controllers
                 return NotFound();
             }
             ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Title", ticket.ProjectId);
-            ViewData["StatusUpdatesId"] = new SelectList(_context.Set<StatusUpdates>(), "Id", "Id", ticket.StatusUpdatesId);
-            ViewData["TrackerUserId"] = new SelectList(_context.Set<TrackerUser>(), "Id", "Id", ticket.TrackerUserId);
+            ViewData["StatusUpdatesId"] = new SelectList(_context.Set<StatusUpdates>(), "Id", "Desc", ticket.StatusUpdatesId);
+            ViewData["TrackerUserId"] = new SelectList(_context.Set<TrackerUser>(), "Id", "Email", ticket.TrackerUserId);
             return View(ticket);
         }
 

@@ -7,7 +7,7 @@
 <h1> @Model.Project.Title</h1>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
 
         <h5 class="text-primary">
             Description - @Html.DisplayFor(model => model.Project.Description)
@@ -46,9 +46,8 @@
                         {
                             @if (item.ProjectId == Model.Project.Id)
                             {
+                                <tr class="table-light">
 
-
-                                <tr class="table-secondary">
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Title)
                                     </td>
@@ -61,12 +60,12 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Status.Desc)
                                     </td>
-
                                     <td>
                                         <a asp-action="Edit" asp-controller="Tickets" asp-route-id="@item.Id">Edit</a> |
                                         <a asp-action="Details" asp-controller="Tickets" asp-route-id="@item.Id">Details</a> |
                                         <a asp-action="Delete" asp-controller="Tickets" asp-route-id="@item.Id">Delete</a>
                                     </td>
+
                                 </tr>
                             }
                         }
