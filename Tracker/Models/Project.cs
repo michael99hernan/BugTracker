@@ -14,6 +14,7 @@ namespace Tracker.Models
         public string? Description { get; set; }
 
         public DateTime DateCreated { get; set; }
+
 #nullable disable
         public string UserId { get; set; }
         public TrackerUser Owner { get; set; }

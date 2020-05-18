@@ -1,44 +1,81 @@
-﻿@model Tracker.Models.Project
+﻿@model Tracker.ViewModels.ProjectDetailViewModel
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1> @Model.Project.Title</h1>
 
-<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-    <div class="card-header2">
-        Project
+<div class="row">
+    <div class="col-md-4">
+
+        <h5 class="text-primary">
+            Description - @Html.DisplayFor(model => model.Project.Description)
+
+        </h5>
+
+        <h6 class="text-secondary">
+            Date Issued - @Html.DisplayFor(model => model.Project.DateCreated)
+
+        </h6>
+
+
     </div>
-        <div class="card-body">
-            <h4 class="card-title">Project Name</h4>
-            <div class="card-text">
-                <dl class="row">
-                    <dt class="col-sm-6">
-                        @Html.DisplayNameFor(model => model.Title)
-                    </dt>
-                    <dd class="col-sm-6">
-                        @Html.DisplayFor(model => model.Title)
-                    </dd>
-                    <dt class="col-sm-6">
-                        @Html.DisplayNameFor(model => model.Description)
-                    </dt>
-                    <dd class="col-sm-6">
-                        @Html.DisplayFor(model => model.Description)
-                    </dd>
-                    <dt class="col-sm-6">
-                        @Html.DisplayNameFor(model => model.DateCreated)
-                    </dt>
-                    <dd class="col-sm-6">
-                        @Html.DisplayFor(model => model.DateCreated)
-                    </dd>
 
-                </dl>
-            </div>
+
+        <div class="col-xl-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="table-primary">
+                            <th scope="row">Ticket</th>
+
+                            <th>
+                                Date Issued
+                            </th>
+                            <th>
+                                User
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        @foreach (var item in Model.Ticket)
+                        {
+                            @if (item.ProjectId == Model.Project.Id)
+                            {
+
+
+                                <tr class="table-secondary">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateCreated)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserCreated.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Status.Desc)
+                                    </td>
+
+                                    <td>
+                                        <a asp-action="Edit" asp-controller="Tickets" asp-route-id="@item.Id">Edit</a> |
+                                        <a asp-action="Details" asp-controller="Tickets" asp-route-id="@item.Id">Details</a> |
+                                        <a asp-action="Delete" asp-controller="Tickets" asp-route-id="@item.Id">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
         </div>
-</div>
 
-    <div>
-        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-        <a asp-action="Index">Back to List</a>
-    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Project.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

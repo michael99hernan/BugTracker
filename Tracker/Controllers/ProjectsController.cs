@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Tracker.Data;
 using Tracker.Models;
+using Tracker.ViewModels;
 
 namespace Tracker.Controllers
 {
@@ -31,19 +32,21 @@ namespace Tracker.Controllers
         // GET: Projects/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            var vm = new ProjectDetailViewModel();
+            vm.Ticket = _context.Ticket.Include(t => t.Project).Include(t => t.Status).Include(t => t.UserCreated).ToList();
             if (id == null)
             {
                 return NotFound();
             }
 
-            var project = await _context.Projects
+           vm.Project = await _context.Projects
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (project == null)
+            if (vm.Project == null)
             {
                 return NotFound();
             }
 
-            return View(project);
+            return View(vm);
         }
 
         // GET: Projects/Create

@@ -12,6 +12,7 @@ namespace Tracker.Models
         public string Desc { get; set; }
 
     }
+    
     public class Ticket
     {
         public int Id { get; set; }
@@ -28,5 +29,10 @@ namespace Tracker.Models
         public Project Project { get; set; }
 
         public string Description { get; set; }
+
+        public static implicit operator Ticket(List<Ticket> v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
