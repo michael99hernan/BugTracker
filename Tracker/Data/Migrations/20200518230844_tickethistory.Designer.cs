@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tracker.Data;
 
 namespace Tracker.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200518230844_tickethistory")]
+    partial class tickethistory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -306,26 +308,6 @@ namespace Tracker.Data.Migrations
                     b.ToTable("Ticket");
                 });
 
-            modelBuilder.Entity("Tracker.Models.TicketHistory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AuditData")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TicketId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TicketId");
-
-                    b.ToTable("TicketHistories");
-                });
-
             modelBuilder.Entity("Tracker.Models.UserProject", b =>
                 {
                     b.Property<int>("Id")
@@ -430,15 +412,6 @@ namespace Tracker.Data.Migrations
                     b.HasOne("Tracker.Models.TrackerUser", "UserCreated")
                         .WithMany()
                         .HasForeignKey("TrackerUserId");
-                });
-
-            modelBuilder.Entity("Tracker.Models.TicketHistory", b =>
-                {
-                    b.HasOne("Tracker.Models.Ticket", "Ticket")
-                        .WithMany()
-                        .HasForeignKey("TicketId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Tracker.Models.UserProject", b =>

@@ -8,6 +8,8 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20200517064944_Tickets4.cs" />
     <Compile Remove="Data\Migrations\20200517064944_Tickets4.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200518231015_tickethistory1.cs" />
+    <Compile Remove="Data\Migrations\20200518231015_tickethistory1.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
