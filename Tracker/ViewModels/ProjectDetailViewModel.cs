@@ -11,5 +11,7 @@ namespace Tracker.ViewModels
     {
         public Models.Project Project { get; set; }
         public List<Ticket> Ticket { get; set; }
+
+
     }
 }

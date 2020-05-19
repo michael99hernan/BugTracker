@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -39,7 +40,7 @@ namespace Tracker.Controllers
                 return NotFound();
             }
 
-           vm.Project = await _context.Projects
+            vm.Project = await _context.Projects
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (vm.Project == null)
             {

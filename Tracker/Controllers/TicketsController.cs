@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Tracker.Data;
 using Tracker.Models;
+using Tracker.ViewModels;
 
 namespace Tracker.Controllers
 {
@@ -30,22 +31,25 @@ namespace Tracker.Controllers
         // GET: Tickets/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            var vm = new TicketDetailViewModel();
+            vm.His = await _context.TicketHistories.ToListAsync();
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            var ticket = await _context.Ticket
+            vm.Tic = await _context.Ticket
                 .Include(t => t.Project)
                 .Include(t => t.Status)
                 .Include(t => t.UserCreated)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (ticket == null)
+            if (vm == null)
             {
                 return NotFound();
             }
 
-            return View(ticket);
+            return View(vm);
         }
 
         // GET: Tickets/Create
@@ -133,7 +137,7 @@ namespace Tracker.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Title", ticket.ProjectId);
-            ViewData["StatusUpdatesId"] = new SelectList(_context.Set<StatusUpdates>(), "Id", "Id", ticket.StatusUpdatesId);
+            ViewData["StatusUpdatesId"] = new SelectList(_context.Set<StatusUpdates>(), "Id", "Desc", ticket.StatusUpdatesId);
             ViewData["TrackerUserId"] = new SelectList(_context.Set<TrackerUser>(), "Id", "Id", ticket.TrackerUserId);
             return View(ticket);
         }
