@@ -12,6 +12,18 @@ namespace Tracker.Models
         public string Desc { get; set; }
 
     }
+
+    public class Comment
+    {
+        public int Id { get; set; }
+
+        public int TicketId { get; set; }
+        public Ticket TicketNum { get; set; }
+        public string MyComment { get; set; }
+
+        public string TrackerUserId { get; set; }
+        public TrackerUser Owner { get; set; }
+    }
     
     public class Ticket
     {
@@ -29,6 +41,8 @@ namespace Tracker.Models
         public Project Project { get; set; }
 
         public string Description { get; set; }
+
+        public List<Comment> Comments { get; set; }
 
         public static implicit operator Ticket(List<Ticket> v)
         {

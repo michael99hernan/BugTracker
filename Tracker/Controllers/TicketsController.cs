@@ -33,12 +33,13 @@ namespace Tracker.Controllers
         {
             var vm = new TicketDetailViewModel();
             vm.His = await _context.TicketHistories.ToListAsync();
+            //vm.currComment.TrackerUserId = User.Identity.GetUserId();
 
             if (id == null)
             {
                 return NotFound();
             }
-
+            vm.Com = await _context.Comments.Where(p => p.TicketId == id).Include(p => p.Owner).ToListAsync();
             vm.Tic = await _context.Ticket
                 .Include(t => t.Project)
                 .Include(t => t.Status)
@@ -48,10 +49,26 @@ namespace Tracker.Controllers
             {
                 return NotFound();
             }
-
+            //vm.currComment.TicketId = vm.Tic.Id;
+            ViewData["TrackerUserId"] = new SelectList(_context.Set<TrackerUser>(), "Id", "Id");
+            ViewData["TicketId"] = new SelectList(_context.Ticket, "Id", "Id");
             return View(vm);
         }
-
+        [HttpPost]
+        public async Task<IActionResult> Details(TicketDetailViewModel vm)
+        {
+            //  comment.TicketId = id;
+            vm.currComment.TrackerUserId = User.Identity.GetUserId();
+            if (ModelState.IsValid)
+            {
+                _context.Add(vm.currComment);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Details", "Tickets", vm.currComment.TicketId.ToString());
+            }
+            ViewData["TrackerUserId"] = new SelectList(_context.Set<TrackerUser>(), "Id", "Id");
+            ViewData["TicketId"] = new SelectList(_context.Ticket, "Id", "Id");
+            return RedirectToAction("Details", "Tickets", vm.currComment.TicketId.ToString());
+        }
         // GET: Tickets/Create
         public IActionResult Create()
         {

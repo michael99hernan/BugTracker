@@ -17,5 +17,6 @@ namespace Tracker.Data
         public DbSet<UserProject> UserProjects { get; set; }
         public DbSet<Tracker.Models.Ticket> Ticket { get; set; }
         public DbSet<TicketHistory> TicketHistories{ get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }

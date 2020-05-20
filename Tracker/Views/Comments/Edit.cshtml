@@ -1,0 +1,44 @@
+﻿@model Tracker.Models.Comment
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Comment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="TicketId" class="control-label"></label>
+                <select asp-for="TicketId" class="form-control" asp-items="ViewBag.TicketId"></select>
+                <span asp-validation-for="TicketId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MyComment" class="control-label"></label>
+                <input asp-for="MyComment" class="form-control" />
+                <span asp-validation-for="MyComment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TrackerUserId" class="control-label"></label>
+                <select asp-for="TrackerUserId" class="form-control" asp-items="ViewBag.TrackerUserId"></select>
+                <span asp-validation-for="TrackerUserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
