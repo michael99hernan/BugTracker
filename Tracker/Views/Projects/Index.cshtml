@@ -4,40 +4,40 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Michael's Projects</h1>
-
+<h1>Projects</h1>
+<style>
+    .card-project
+    {
+        height: 12rem;
+    }
+</style>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr class="table-secondary">
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
+<div class="container">
+    <div class="row">
 
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                <div class="card bg-light">
+                    <a asp-action="Details" asp-route-id="@item.Id" style="color: black; background-color: transparent;">
+                        <div class="card-header">@Html.DisplayFor(modelItem => item.Title)</div>
 
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                    </a>
+                    <div class="card-body" style="max-height: 15rem">
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+
+                    </div>
+                   
+                    <div class="card-footer" style="background-color: transparent;">
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </div>
+                   
+                </div>
+            </div>
+         }
+    </div>
+</div>
+

@@ -21,17 +21,41 @@
 
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Projects" asp-action="Index">Projects</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dacf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3erk" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                    <ul class="navbar-nav nav-pills flex-grow-1">
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link text-dark dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Tickets</a>
+                                <div class="dropdown-menu" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
+                                    <a class="dropdown-item" asp-controller="Tickets" asp-action="Create">Add Ticket</a>
+                                    <a class="dropdown-item" asp-controller="Tickets" asp-action="Index">My Tickets</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">All Tickets</a>
+                                </div>
+                            </li>
+                        }
+
+                        @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("Developer") || User.IsInRole("Project Lead")))
+                        {
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link text-dark dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Projects</a>
+                                <div class="dropdown-menu" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
+                                    <a class="dropdown-item" asp-controller="Projects" asp-action="Index">View Projects</a>
+                                    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("Project Lead")))
+                                    {
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" asp-controller="Projects" asp-action="Create">Create Project</a>
+                                    }
+                                </div>
+                            </li>
+                        }
+
                         @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dacf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3erk" asp-area="" asp-controller="Admin" asp-action="ListRoles">Admin</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="ListRoles">Admin</a>
                             </li>
                         }
                     </ul>

@@ -11,16 +11,55 @@
 </style>
 <div class="container">
     <div class="row justify-content-between align-items-start">
-        <div class="card border-primary col-md-8  mb-4 " style="border-radius:1rem">
-            <div class="card-header" style="background-color: transparent">Ticket</div>
-            <div class="card-body">
-                <h4 class="card-title"> @Html.DisplayFor(model => model.Tic.Title)</h4>
-                <p class="card-text">@Html.DisplayFor(model => model.Tic.Description)</p>
+        <div class="col-md-8">
+            <div class="card border-primary mb-4 " style="border-radius:1rem">
+                <div class="card-header" style="background-color: transparent">Ticket</div>
+                <div class="card-body">
+                    <h4 class="card-title"> @Html.DisplayFor(model => model.Tic.Title)</h4>
+                    <p class="card-text">@Html.DisplayFor(model => model.Tic.Description)</p>
+                </div>
+                <div class="mycard-footer">
+                    <span class="badge badge-primary">Submitted by @Html.DisplayFor(model => model.Tic.UserCreated.Email)</span>
+                    <span class="badge badge-secondary">Date submitted: @Html.DisplayFor(model => model.Tic.DateCreated)</span>
+                </div>
             </div>
-            <div class="mycard-footer">
-                <span class="badge badge-primary">Submitted by @Html.DisplayFor(model => model.Tic.UserCreated.Email)</span>
-                <span class="badge badge-secondary">Date submitted: @Html.DisplayFor(model => model.Tic.DateCreated)</span>
-            </div>
+            <form asp-action="Details" method="post" class="align-content-start">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="currComment.TicketId" value="@Model.Tic.Id" />
+                <input type="hidden" asp-for="currComment.Id" />
+                <input type="hidden" asp-for="currComment.TrackerUserId" />
+
+                <input id="currComment.MyComment" type="hidden" class="form-control" />
+
+                <div class="form-group">
+                    <label class="control-label">Comments</label>
+                    <textarea required="required" placeholder="Typing here..." asp-for="currComment.MyComment" class="form-control" rows="2"></textarea>
+                    <span asp-validation-for="currComment.MyComment" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                </div>
+
+            </form>
+            <table class="table col-md-8">
+                <tbody>
+                    @foreach (var item in Model.Com)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Owner.Email)
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MyComment)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
 
 
@@ -49,48 +88,12 @@
 
     <div class="row mb-4" style="border-radius:1rem">
 
-        <form asp-action="Details" method="post" class="col-md-8">
-
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="currComment.TicketId" value="@Model.Tic.Id" />
-            <input type="hidden" asp-for="currComment.Id" />
-            <input type="hidden" asp-for="currComment.TrackerUserId" />
-
-            <input id="currComment.MyComment" type="hidden" class="form-control" />
-
-            <div class="form-group">
-                <label class="control-label">Comments</label>
-                <textarea required="required" placeholder="Comment" asp-for="currComment.MyComment" class="form-control" rows="2"></textarea>
-                <span asp-validation-for="currComment.MyComment" class="text-danger"></span>
-            </div>
-
-
-            <div class="form-group">
-                <input type="submit" value="Submit" class="btn btn-primary" />
-            </div>
-
-        </form>
 
 
     </div>
 
     <div class="row">
-        <table class="table col-md-8">
-            <tbody>
-                @foreach (var item in Model.Com)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Owner.Email)
-
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MyComment)
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+  
     </div>
 </div>
 
