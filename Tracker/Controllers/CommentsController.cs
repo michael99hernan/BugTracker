@@ -10,6 +10,7 @@ using Tracker.Models;
 
 namespace Tracker.Controllers
 {
+
     public class CommentsController : Controller
     {
         private readonly ApplicationDbContext _context;
