@@ -15,12 +15,7 @@
         <tr class="table-secondary">
             <th scope="row">Ticket</th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.DateCreated)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => User)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
@@ -37,12 +32,6 @@
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateCreated)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserCreated.Email)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Status.Desc)
