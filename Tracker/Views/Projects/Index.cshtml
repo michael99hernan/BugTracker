@@ -21,13 +21,16 @@
 
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                     <div class="card bg-light">
-                        <a asp-action="Details" asp-route-id="@item.Id" style="color: black; background-color: transparent;">
-                            <div class="card-header">@Html.DisplayFor(modelItem => item.Title)</div>
-
-                        </a>
+                            <div class="card-header">Project</div>
                         <div class="card-body">
-                            <p class="card-text">Description: @Html.DisplayFor(modelItem => item.Description)</p>
+                            <a asp-action="Details" asp-route-id="@item.Id" style="color: black; background-color: transparent;">
+                                <h5 class="card-title">
 
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </h5>
+                                <p class="card-text">Date Created: @Html.DisplayFor(modelItem => item.DateCreated)</p>
+
+                            </a>
                         </div>
 
                         <div class="card-footer" style="background-color: transparent;">
