@@ -19,7 +19,7 @@
             @foreach (var item in Model)
             {
 
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
                     <div class="card bg-light">
                             <div class="card-header">Project</div>
                         <div class="card-body">
@@ -28,7 +28,7 @@
 
                                     @Html.DisplayFor(modelItem => item.Title)
                                 </h5>
-                                <p class="card-text">Date Created: @Html.DisplayFor(modelItem => item.DateCreated)</p>
+                                <p class="card-text">Date Created: @Html.DisplayFor(modelItem => item.DateCreated.Month)/@Html.DisplayFor(modelItem => item.DateCreated.Day)/@Html.DisplayFor(modelItem => item.DateCreated.Year)</p>
 
                             </a>
                         </div>
