@@ -15,6 +15,7 @@ using Tracker.ViewModels;
 
 namespace Tracker.Controllers
 {
+    [Authorize(Roles = "Admin,Project Lead,Developer")]
     public class ProjectsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -129,6 +130,7 @@ namespace Tracker.Controllers
         }
 
         // GET: Projects/Delete/5
+        [Authorize(Roles = "Admin,Project Lead")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

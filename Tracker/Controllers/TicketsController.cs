@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using Tracker.ViewModels;
 
 namespace Tracker.Controllers
 {
+    [Authorize]
     public class TicketsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -136,7 +138,7 @@ namespace Tracker.Controllers
             {
                 return NotFound();
             }
-
+            
             if (ModelState.IsValid)
             {
                 try
@@ -164,6 +166,7 @@ namespace Tracker.Controllers
         }
 
         // GET: Tickets/Delete/5
+        [Authorize(Roles="Admin,Project Lead, Developer")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
