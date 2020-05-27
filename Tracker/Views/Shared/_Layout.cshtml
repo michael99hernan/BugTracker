@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Tracker</title>
+    <title>@ViewData["Title"] - Bug Tracker</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -13,7 +13,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Tracker</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Bug Tracker</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,9 +29,9 @@
                                 <a class="nav-link text-dark dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Tickets</a>
                                 <div class="dropdown-menu" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
                                     <a class="dropdown-item" asp-controller="Tickets" asp-action="Create">Add Ticket</a>
-                                    <a class="dropdown-item" asp-controller="Tickets" asp-action="Index">My Tickets</a>
+                                    <a class="dropdown-item" asp-controller="Tickets" asp-action="MyTickets">My Tickets</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">All Tickets</a>
+                                    <a class="dropdown-item" asp-controller="Tickets" asp-action="index">All Tickets</a>
                                 </div>
                             </li>
                         }

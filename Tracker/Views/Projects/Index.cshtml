@@ -16,28 +16,29 @@
 </p>
 <div class="container">
     <div class="row">
+            @foreach (var item in Model)
+            {
 
-        @foreach (var item in Model)
-        {
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-                <div class="card bg-light">
-                    <a asp-action="Details" asp-route-id="@item.Id" style="color: black; background-color: transparent;">
-                        <div class="card-header">@Html.DisplayFor(modelItem => item.Title)</div>
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                    <div class="card bg-light">
+                        <a asp-action="Details" asp-route-id="@item.Id" style="color: black; background-color: transparent;">
+                            <div class="card-header">@Html.DisplayFor(modelItem => item.Title)</div>
 
-                    </a>
-                    <div class="card-body" style="max-height: 15rem">
-                        <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                        </a>
+                        <div class="card-body">
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
 
-                    </div>
-                   
-                    <div class="card-footer" style="background-color: transparent;">
+                        </div>
+
+                        <div class="card-footer" style="background-color: transparent;">
                             <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                             <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </div>
+
                     </div>
-                   
                 </div>
-            </div>
-         }
+            }
+
     </div>
 </div>
 

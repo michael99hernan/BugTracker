@@ -27,7 +27,11 @@ namespace Tracker.Controllers
             var applicationDbContext = _context.Ticket.Include(t => t.Project).Include(t => t.Status).Include(t => t.UserCreated);
             return View(await applicationDbContext.ToListAsync());
         }
-
+        public async Task<IActionResult> MyTickets()
+        {
+            var applicationDbContext = _context.Ticket.Include(t => t.Project).Include(t => t.Status).Include(t => t.UserCreated).Where(u => u.TrackerUserId == User.Identity.GetUserId());
+            return View(await applicationDbContext.ToListAsync());
+        }
         // GET: Tickets/Details/5
         public async Task<IActionResult> Details(int? id)
         {
