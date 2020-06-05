@@ -6,78 +6,81 @@
 
 <h1> @Model.Project.Title</h1>
 
+<div class="container">
+    <div class="row">
+        <div class="col-10">
 
-<div class="row">
-    <div class="col-md-10">
+            <h5 class="text-primary">
+                Description - @Html.DisplayFor(model => model.Project.Description)
 
-        <h5 class="text-primary">
-            Description - @Html.DisplayFor(model => model.Project.Description)
+            </h5>
 
-        </h5>
+            <h6 class="text-secondary">
+                Date Issued - @Html.DisplayFor(model => model.Project.DateCreated)
 
-        <h6 class="text-secondary">
-            Date Issued - @Html.DisplayFor(model => model.Project.DateCreated)
-
-        </h6>
+            </h6>
 
 
+        </div>
+        <div class="col-2">
+            <a class="btn btn-outline-primary btn-lg" asp-action="Create" asp-controller="Tickets" role="button">Create Ticket</a>
+        </div>
     </div>
-    <div class="col-sm-2">
-        <a class="btn btn-outline-primary btn-lg" asp-action="Create" asp-controller="Tickets" role="button">Create Ticket</a>
+    <div class="row">
+        <div class="col-xl-12">
+            <table class="table">
+                <thead>
+                    <tr class="table-primary">
+                        <th scope="row">Ticket</th>
+
+                        <th>
+                            Date Issued
+                        </th>
+                        <th>
+                            User
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Ticket)
+                    {
+                        @if (item.ProjectId == Model.Project.Id)
+                        {
+                            <tr class="table-light">
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateCreated)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserCreated.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status.Desc)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-controller="Tickets" asp-route-id="@item.Id">Edit</a> |
+                                    <a asp-action="Details" asp-controller="Tickets" asp-route-id="@item.Id">Details</a> |
+                                    <a asp-action="Delete" asp-controller="Tickets" asp-route-id="@item.Id">Delete</a>
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
-        <div class="col-xl-12">
-                <table class="table">
-                    <thead>
-                        <tr class="table-primary">
-                            <th scope="row">Ticket</th>
-
-                            <th>
-                                Date Issued
-                            </th>
-                            <th>
-                                User
-                            </th>
-                            <th>
-                                Status
-                            </th>
-                            <th>
-
-                            </th>
-                        </tr>
-  
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.Ticket)
-                        {
-                            @if (item.ProjectId == Model.Project.Id)
-                            {
-                                <tr class="table-light">
-
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Title)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DateCreated)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.UserCreated.Email)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Status.Desc)
-                                    </td>
-                                    <td>
-                                        <a asp-action="Edit" asp-controller="Tickets" asp-route-id="@item.Id">Edit</a> |
-                                        <a asp-action="Details" asp-controller="Tickets" asp-route-id="@item.Id">Details</a> |
-                                        <a asp-action="Delete" asp-controller="Tickets" asp-route-id="@item.Id">Delete</a>
-                                    </td>
-
-                                </tr>
-                            }
-                        }
-                    </tbody>
-                </table>
-        </div>
 
 
 <div>
