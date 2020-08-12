@@ -1,0 +1,45 @@
+﻿@model IEnumerable<BugTracker.Models.Project>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Projects</h1>
+<style>
+    .card-project
+    {
+        height: 12rem;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+            @foreach (var item in Model)
+            {
+
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                    <div class="card bg-light">
+                            <div class="card-header">Project</div>
+                        <div class="card-body">
+                            <a asp-action="Details" asp-route-id="@item.Id" style="color: black; background-color: transparent;">
+                                <h5 class="card-title">
+
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </h5>
+                                <p class="card-text">Date Created: @Html.DisplayFor(modelItem => item.DateCreated.Month)/@Html.DisplayFor(modelItem => item.DateCreated.Day)/@Html.DisplayFor(modelItem => item.DateCreated.Year)</p>
+
+                            </a>
+                        </div>
+
+                        <div class="card-footer" style="background-color: transparent;">
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+    </div>
+</div>
+

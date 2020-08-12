@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Tracker.Controllers
 {   
-  //  [Authorize(Roles ="Admin")]
+    [Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;

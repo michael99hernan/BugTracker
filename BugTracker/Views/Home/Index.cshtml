@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<TrackerUser> SignInManager
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="jumbotron">
+
+    <div class="card-body">
+        <h1 class="display-3">Welcome to Bug Tracker</h1>
+        <p class="lead">Bug Tracker allows businesses to keep, track, and save bug reports.</p>
+        <hr class="my-4">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            @if ((User.IsInRole("Admin") || User.IsInRole("Developer") || User.IsInRole("Project Lead")))
+            {
+                <p>You can see current projects on the projects page below.</p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" asp-action="index" asp-controller="Projects" role="button">Projects</a>
+                </p>
+            }
+            else
+            {
+                <p>You can see current tickets on the tickets page below.</p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" asp-action="index" asp-controller="Tickets" role="button">Tickets</a>
+                </p>
+            }
+        }
+        else
+        {
+            <p>Register for an account below. Remember to click confirm account after registering!</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" asp-area="Identity" asp-page="/Account/Register" role="button">Register</a>
+            </p>
+        }
+    </div>
+</div>

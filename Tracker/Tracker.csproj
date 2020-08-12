@@ -6,35 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\Migrations\20200517064944_Tickets4.cs" />
-    <Compile Remove="Data\Migrations\20200517064944_Tickets4.Designer.cs" />
-    <Compile Remove="Data\Migrations\20200518231015_tickethistory1.cs" />
-    <Compile Remove="Data\Migrations\20200518231015_tickethistory1.Designer.cs" />
-    <Compile Remove="Data\Migrations\20200526021204_prior.cs" />
-    <Compile Remove="Data\Migrations\20200526021204_prior.Designer.cs" />
-    <Compile Remove="Data\Migrations\20200526024756_remove-migraton.cs" />
-    <Compile Remove="Data\Migrations\20200526024756_remove-migraton.Designer.cs" />
-    <Compile Remove="Data\Migrations\20200526031123_newsetup.cs" />
-    <Compile Remove="Data\Migrations\20200526031123_newsetup.Designer.cs" />
-    <Compile Remove="Data\Migrations\20200526043538_priority.cs" />
-    <Compile Remove="Data\Migrations\20200526043538_priority.Designer.cs" />
-    <Compile Remove="Data\Migrations\20200526044516_priority2.cs" />
-    <Compile Remove="Data\Migrations\20200526044516_priority2.Designer.cs" />
-    <Compile Remove="Data\Migrations\20200526044748_priority3.cs" />
-    <Compile Remove="Data\Migrations\20200526044748_priority3.Designer.cs" />
-    <Compile Remove="Data\Migrations\20200526045236_priority4.cs" />
-    <Compile Remove="Data\Migrations\20200526045236_priority4.Designer.cs" />
-    <Compile Remove="Data\Migrations\20200526053652_remove-migration.cs" />
-    <Compile Remove="Data\Migrations\20200526053652_remove-migration.Designer.cs" />
-    <Compile Remove="Data\Migrations\20200526053743_priorityupdates.cs" />
-    <Compile Remove="Data\Migrations\20200526053743_priorityupdates.Designer.cs" />
-    <Compile Remove="Data\Migrations\20200526054121_priority.cs" />
-    <Compile Remove="Data\Migrations\20200526054121_priority.Designer.cs" />
-    <Compile Remove="Data\Migrations\20200526054650_priority1.cs" />
-    <Compile Remove="Data\Migrations\20200526054650_priority1.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Images\tech.jpg" />
   </ItemGroup>
 

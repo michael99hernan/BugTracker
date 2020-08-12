@@ -1,0 +1,61 @@
+﻿@model IEnumerable<BugTracker.Models.Ticket>
+
+@{
+    ViewData["Title"] = "Ticket Master";
+}
+
+<h1>Current Tickets</h1>
+
+<p>
+    <a asp-action="Create">Create a New Ticket</a>
+</p>
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr class="table-dark">
+                    <th scope="row">Ticket</th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateCreated)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => User)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Project)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateCreated)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserCreated.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status.Desc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Project.Title)
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
